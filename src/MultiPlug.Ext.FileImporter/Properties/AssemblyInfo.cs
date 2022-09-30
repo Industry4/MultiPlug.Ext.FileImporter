@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MultiPlug.Ext.FileImporter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MultiPlug File Importer Extension")]
+[assembly: AssemblyDescription("Allow the importation of Files such as CSV and TSV which are converted to MultiPlug Events")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MultiPlug.Ext.FileImporter")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("4IR.UK British Systems")]
+[assembly: AssemblyProduct("File Importer")]
+[assembly: AssemblyCopyright("4IR.UK British Systems 2022")]
+[assembly: AssemblyTrademark("MultiPlug")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

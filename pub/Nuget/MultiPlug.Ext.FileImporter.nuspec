@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MultiPlug.Ext.FileImporter</id>
+    <version>1.0.0</version>
+    <title>File Import Extension for the MultiPlug .Net Edge Computing Platform</title>
+    <authors>4IR.UK</authors>
+    <owners>4IR.UK</owners>
+    <projectUrl>https://github.com/industry4/MultiPlug.Ext.FileImporter</projectUrl>
+    <icon>images\multiplugico.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Allow the importation of Files such as CSV and TSV which are converted to MultiPlug Events</description>
+    <repository type="git" url="https://github.com/industry4/MultiPlug.Ext.FileImporter" />
+	<license type="expression">MIT</license>
+    <releaseNotes>1.0.0 First Release Stub</releaseNotes>
+    <copyright>4IR.UK British Systems 2022</copyright>
+    <tags>MultiPlug Edge_Computing Edge IoT File Import</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="MultiPlug.Base" version="1.0.71" />
+        <dependency id="MultiPlug.Extension.Core" version="1.0.63" />
+        <dependency id="MultiPlug.Core" version="2.2.80" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="images\multiplugico.png" target="images\" />
+    <file src="..\..\src\MultiPlug.Ext.FileImporter\bin\Release\MultiPlug.Ext.FileImporter.dll" target="lib\net472" />
+  </files>
+</package>
