@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,11 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\FileImporter\FileImporterComponent.cs" />
+    <Compile Include="Controllers\Apps\FileImporter\FileImporterApp.cs" />
+    <Compile Include="Controllers\Apps\FileImporter\Home\HomeController.cs" />
+    <Compile Include="Controllers\Assets\AssetsController.cs" />
+    <Compile Include="Controllers\Assets\JavaScript\JavaScriptController.cs" />
+    <Compile Include="Controllers\Settings\File\FileController.cs" />
+    <Compile Include="Controllers\Settings\File\FileDeleteController.cs" />
     <Compile Include="Controllers\Settings\Home\HomeController.cs" />
     <Compile Include="Controllers\Settings\SettingsApp.cs" />
     <Compile Include="Controllers\Shared\Templates.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="FileImporter.cs" />
+    <Compile Include="Models\Apps\FileImporter\Home\Home.cs" />
+    <Compile Include="Models\Components\FileImporter\FileImporterProperties.cs" />
+    <Compile Include="Models\Load\Root.cs" />
+    <Compile Include="Models\Settings\File\File.cs" />
     <Compile Include="Models\Settings\Home\Home.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -63,11 +75,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Controllers\Apps\FileImporter\Home\Home.cshtml" />
+    <None Include="Controllers\Settings\File\File.cshtml" />
     <None Include="Controllers\Settings\Home\Home.cshtml" />
+    <None Include="Controllers\Shared\NotFound.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Apps\FileImporter\" />
+    <Content Include="Controllers\Assets\JavaScript\files.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -76,6 +91,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
