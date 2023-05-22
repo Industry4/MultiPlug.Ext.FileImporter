@@ -23,22 +23,31 @@
                 <table id="filesTable" class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="span11">File Type Description</th>
-                            <th class="span1"></th>
+                            <th class="span10">File Type Description</th>
+                            <th class="span2"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (int i = 0; i < Model.Extension.Model.Guid.Length; i++)
                         {
                             <tr>
-                                <td class="span11"><a href="@Raw(Model.Context.Paths.Home)file/?id=@Model.Extension.Model.Guid[i]">@Model.Extension.Model.Type[i]</a></td>
-                                <td class="span1"><a class="btn btn-red btn-deletefile" href="@Raw(Model.Context.Paths.Home)file/delete/?id=@Model.Extension.Model.Guid[i]"><i class="icon-trash"></i></a></td>
+                                <td class="span10"><a href="@Raw(Model.Context.Paths.Home)file/?id=@Model.Extension.Model.Guid[i]">@Model.Extension.Model.Type[i]</a></td>
+                                <td class="span2">
+                                    <div class="btn-group">
+                                        <a class="btn btn-blue" href="@Raw(Model.Context.Paths.Home)file/?id=@Model.Extension.Model.Guid[i]">
+                                            <i class="icon-edit"></i>
+                                        </a>
+                                        <a class="btn btn-red btn-deletefile" href="@Raw(Model.Context.Paths.Home)file/delete/?id=@Model.Extension.Model.Guid[i]">
+                                            <i class="icon-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         }
 
                         <tr>
-                            <td class="span11"></td>
-                            <td class="span1"><button type="button" class="btn btn-green" id="btn-newfile"><i class="icon-plus"></i></button></td>
+                            <td class="span10"></td>
+                            <td class="span2"><button type="button" class="btn btn-green" id="btn-newfile"><i class="icon-plus"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
