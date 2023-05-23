@@ -1,0 +1,37 @@
+﻿@model MultiPlug.Base.Http.EdgeApp
+@functions {
+    public bool NavLocationIsHome()
+    {
+        return Model.Context.Paths.Current.StartsWith(Model.Context.Paths.Home);
+    }
+
+    public bool NavLocationIsAbout()
+    {
+        return Model.Context.Paths.Current.StartsWith(Model.Context.Paths.Home + "about");
+    }
+
+    public bool NavLocationIsFile()
+    {
+        return Model.Context.Paths.Current.StartsWith(Model.Context.Paths.Home + "file");
+    }   
+}
+
+<div class="row-fluid">
+    <ul class="nav nav-tabs">
+        @if (NavLocationIsAbout())
+        {
+            <li class=""><a href="@Raw(Model.Context.Paths.Home)">Home</a></li>
+            <li class="active"><a href="@Raw(Model.Context.Paths.Home)about/">About</a></li>
+        }
+        else if (NavLocationIsFile())
+        {
+            <li class=""><a href="@Raw(Model.Context.Paths.Home)">Home</a></li>
+            <li class="active"><a href="@Raw(Model.Context.Paths.Home)file/">File</a></li>
+        }
+        else
+        {
+            <li class="active"><a href="@Raw(Model.Context.Paths.Home)">Home</a></li>
+            <li class=""><a href="@Raw(Model.Context.Paths.Home)about/">About</a></li>
+        }
+    </ul>
+</div>

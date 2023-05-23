@@ -19,7 +19,7 @@ namespace MultiPlug.Ext.FileImporter.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -62,8 +62,21 @@ namespace MultiPlug.Ext.FileImporter.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @model MultiPlug.Base.Http.EdgeApp
+        ///    &lt;section class=&quot;row-fluid&quot;&gt;
         ///
-        ///&lt;p&gt;Hello World&lt;/p&gt;.
+        ///        &lt;div class=&quot;row-fluid&quot;&gt;
+        ///            &lt;div class=&quot;box&quot;&gt;
+        ///                &lt;div class=&quot;span4&quot;&gt;
+        ///                &lt;/div&gt;
+        ///                &lt;div class=&quot;span4&quot;&gt;
+        ///                    &lt;p style=&quot;font-size:26px; line-height: 54px; text-align: center; margin: 0px;&quot;&gt;File Importer&lt;/p&gt;
+        ///                &lt;/div&gt;
+        ///                &lt;div class=&quot;span4&quot; style=&quot;text-align: right;&quot;&gt;
+        ///                &lt;/div&gt;
+        ///            &lt;/div&gt;
+        ///        &lt;/div&gt;
+        ///
+        ///        @fo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AppFileImporterHome {
             get {
@@ -93,19 +106,7 @@ namespace MultiPlug.Ext.FileImporter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using System;
-        ///using System.Collections.Generic;
-        ///using System.Linq;
-        ///using System.Text;
-        ///using System.Threading.Tasks;
-        ///
-        ///namespace MultiPlug.Ext.FileImporter.Controllers.Shared
-        ///{
-        ///    class NotFound
-        ///    {
-        ///    }
-        ///}
-        ///.
+        ///   Looks up a localized string similar to &lt;h3&gt;Not Found&lt;/h3&gt;.
         /// </summary>
         internal static string NotFound {
             get {
@@ -115,6 +116,23 @@ namespace MultiPlug.Ext.FileImporter.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @model MultiPlug.Base.Http.EdgeApp
+        ///@Include(&quot;MultiPlug.Ext.FileImporter.FileImporter_Settings_NavBar&quot;)
+        ///&lt;section class=&quot;row-fluid&quot;&gt;
+        ///    &lt;div class=&quot;row-fluid&quot;&gt;
+        ///        &lt;div class=&quot;span12&quot;&gt;
+        ///            &lt;h3 class=&quot;box-header&quot;&gt;About FileImporter&lt;a href=&quot;#&quot; class=&quot;box-collapse pull-right&quot;&gt;hide&amp;nbsp;&amp;nbsp;&lt;i class=&quot;icon-caret-up&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; class=&quot;box-expand pull-right&quot; style=&quot;display: none&quot;&gt;show&amp;nbsp;&amp;nbsp;&lt;i class=&quot;icon-caret-down&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h3&gt;
+        ///            &lt;div class=&quot;box&quot;&gt;
+        ///                &lt;div [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SettingsAbout {
+            get {
+                return ResourceManager.GetString("SettingsAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model MultiPlug.Base.Http.EdgeApp
+        ///@Include(&quot;MultiPlug.Ext.FileImporter.FileImporter_Settings_NavBar&quot;)
         ///
         ///&lt;form action=&quot;&quot; method=&quot;post&quot; accept-charset=&quot;utf-8&quot; enctype=&quot;application/x-www-form-urlencoded&quot; autocomplete=&quot;off&quot;&gt;
         ///    &lt;section class=&quot;row-fluid&quot;&gt;
@@ -124,9 +142,7 @@ namespace MultiPlug.Ext.FileImporter.Properties {
         ///                &lt;div class=&quot;span4&quot;&gt;
         ///                &lt;/div&gt;
         ///                &lt;div class=&quot;span4&quot;&gt;
-        ///                    &lt;p style=&quot;font-size:26px; line-height: 54px; text-align: center; margin: 0px;&quot;&gt;File Importer&lt;/p&gt;
-        ///                &lt;/div&gt;
-        ///                &lt; [rest of string was truncated]&quot;;.
+        ///                    &lt;p style=&quot;font-size:26px; line-height: 54px; text-align: center; margi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SettingsFile {
             get {
@@ -152,6 +168,30 @@ namespace MultiPlug.Ext.FileImporter.Properties {
         internal static string SettingsHome {
             get {
                 return ResourceManager.GetString("SettingsHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @model MultiPlug.Base.Http.EdgeApp
+        ///@functions {
+        ///    public string NavLocationIsHome()
+        ///    {
+        ///        return Model.Context.Paths.Current == Model.Context.Paths.Home ? &quot;active&quot; : string.Empty;
+        ///    }
+        ///
+        ///    public string NavLocationIsAbout()
+        ///    {
+        ///        return Model.Context.Paths.Current == Model.Context.Paths.Home + &quot;about/&quot; ? &quot;active&quot; : string.Empty;
+        ///    }
+        ///}
+        ///
+        ///&lt;div class=&quot;row-fluid&quot;&gt;
+        ///    &lt;ul class=&quot;nav nav-tabs&quot;&gt;
+        ///        &lt;li class=&quot;@NavLocationIsHome()&quot;&gt;&lt;a href=&quot;@Raw(Model.Context.Paths.Home)&quot;&gt;H [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SettingsNavBar {
+            get {
+                return ResourceManager.GetString("SettingsNavBar", resourceCulture);
             }
         }
     }

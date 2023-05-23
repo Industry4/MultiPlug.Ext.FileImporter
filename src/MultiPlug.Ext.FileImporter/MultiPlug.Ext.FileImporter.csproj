@@ -65,6 +65,7 @@
     <Compile Include="Models\Apps\FileImporter\Home\Home.cs" />
     <Compile Include="Models\Components\FileImporter\FileImporterProperties.cs" />
     <Compile Include="Models\Load\Root.cs" />
+    <Compile Include="Models\Settings\About\About.cs" />
     <Compile Include="Models\Settings\File\File.cs" />
     <Compile Include="Models\Settings\Home\Home.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\Apps\FileImporter\Home\Home.cshtml" />
+    <Compile Include="Controllers\Settings\About\AboutController.cs" />
+    <None Include="Controllers\Settings\About\About.cshtml" />
     <None Include="Controllers\Settings\File\File.cshtml" />
     <None Include="Controllers\Settings\Home\Home.cshtml" />
+    <None Include="Controllers\Shared\NavBar.cshtml" />
     <None Include="Controllers\Shared\NotFound.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -90,6 +94,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

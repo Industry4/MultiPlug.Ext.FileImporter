@@ -34,9 +34,11 @@ namespace MultiPlug.Ext.FileImporter
                 return new RazorTemplate[]
                 {
                     new RazorTemplate(Templates.NotFound, Resources.NotFound),
+                    new RazorTemplate(Templates.NavBar, Resources.SettingsNavBar),
                     new RazorTemplate(Templates.SettingsHome, Resources.SettingsHome),
                     new RazorTemplate(Templates.SettingsFile, Resources.SettingsFile),
                     new RazorTemplate(Templates.AppFileImporterHome, Resources.AppFileImporterHome),
+                    new RazorTemplate(Templates.SettingsAbout, Resources.SettingsAbout),
                 };
             }
         }
