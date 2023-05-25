@@ -51,7 +51,7 @@ namespace MultiPlug.Ext.FileImporter
                 {
                     Item.Guid = Guid.NewGuid().ToString().Substring(0,8);
                     FileImporterComponent NewImporter = new FileImporterComponent(Item.Guid);
-
+                    NewImporter.EventUpdated += AggregateEvents;
                     NewImporter.UpdateProperties(Item);
 
                     if( NewImporters == null)
@@ -68,6 +68,7 @@ namespace MultiPlug.Ext.FileImporter
                     if( Search == null)
                     {
                         FileImporterComponent NewImporter = new FileImporterComponent(Item.Guid);
+                        NewImporter.EventUpdated += AggregateEvents;
 
                         NewImporter.UpdateProperties(Item);
 
@@ -105,6 +106,7 @@ namespace MultiPlug.Ext.FileImporter
             }
             else
             {
+                Search.EventUpdated -= AggregateEvents;
                 var FilesList = Files.ToList();
                 FilesList.Remove(Search);
                 Files = FilesList.ToArray();

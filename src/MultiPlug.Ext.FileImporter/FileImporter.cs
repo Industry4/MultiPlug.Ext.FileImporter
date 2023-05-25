@@ -4,11 +4,13 @@ using MultiPlug.Ext.FileImporter.Models.Load;
 using MultiPlug.Ext.FileImporter.Properties;
 using MultiPlug.Extension.Core;
 using MultiPlug.Extension.Core.Http;
+using System;
 
 namespace MultiPlug.Ext.FileImporter
 {
     public class FileImporter : MultiPlugExtension
     {
+        internal event Action EventUpdated;
         public FileImporter()
         {
             Core.Instance.EventsUpdated += OnEventsUpdated;

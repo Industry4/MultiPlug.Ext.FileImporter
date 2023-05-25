@@ -17,7 +17,9 @@ namespace MultiPlug.Ext.FileImporter.Controllers.Assets.JavaScript
                 case "files.js":
                     Result = Resources.FilesJs;
                     break;
-
+                case "file.js":
+                    Result = Resources.FileJs;
+                    break;
                 default:
                     break;
             }

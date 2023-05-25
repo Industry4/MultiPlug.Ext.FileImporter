@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using MultiPlug.Base.Attribute;
+using MultiPlug.Base.Exchange;
 using MultiPlug.Base.Http;
 using MultiPlug.Ext.FileImporter.Controllers.Shared;
 
@@ -11,8 +12,6 @@ namespace MultiPlug.Ext.FileImporter.Controllers.Settings.File
         public Response Get(string id)
         {
             var Search = Core.Instance.Files.FirstOrDefault(File => File.Guid == id);
-
-
             if (Search == null)
             {
                 return new Response
@@ -27,7 +26,8 @@ namespace MultiPlug.Ext.FileImporter.Controllers.Settings.File
                     Model = new Models.Settings.File.File
                     {
                         Guid = Search.Guid,
-                        Description = Search.Type
+                        Description = Search.Type,
+                        Headings = Search.RowEvent.Subjects
                     },
                     Template = Templates.SettingsFile
                 };
@@ -38,30 +38,20 @@ namespace MultiPlug.Ext.FileImporter.Controllers.Settings.File
         {
             var Search = Core.Instance.Files.FirstOrDefault(File => File.Guid == thePost.Guid);
 
-
-            if (Search == null)
+            if (Search!= null)
             {
-                return new Response
+                Search.UpdateProperties(new Models.Components.FileImporter.FileImporterProperties
                 {
-                    StatusCode = System.Net.HttpStatusCode.Moved,
-                    Location = Context.Referrer
-                };
+                    Type = thePost.Description,
+                    Guid = thePost.Guid,
+                    RowEvent = new Event(Search.RowEvent.Guid, Search.RowEvent.Id, Search.RowEvent.Description, thePost.Headings)
+                });
             }
-            else
+            return new Response
             {
-                Search.UpdateProperties(new Models.Components.FileImporter.FileImporterProperties { Type = thePost.Description , Guid = thePost.Guid});
-                return new Response
-                {
-                    Model = new Models.Settings.File.File
-                    {
-                        Guid = Search.Guid,
-                        Description = Search.Type
-                    },
-                    Template = Templates.SettingsFile
-                };
-            }
+                StatusCode = System.Net.HttpStatusCode.Moved,
+                Location = Context.Referrer
+            };
         }
-
-
     }
 }

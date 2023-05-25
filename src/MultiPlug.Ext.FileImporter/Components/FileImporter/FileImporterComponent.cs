@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using MultiPlug.Ext.FileImporter.Models.Components.FileImporter;
 using MultiPlug.Base.Exchange;
+using System.Diagnostics.Tracing;
 
 namespace MultiPlug.Ext.FileImporter.Components.FileImporter
 {
     public class FileImporterComponent : FileImporterProperties
     {
+        internal event Action EventUpdated;
         public FileImporterComponent(string theGuid)
         {
             Guid = theGuid;
             Type = "Unknown";
 
-            RowEvent = new Event { Guid = System.Guid.NewGuid().ToString(), Id = "RowRead-" + theGuid, Description = "Row of a File", /*Subjects = new string[] { "json" }, Group = theGuid*/ };
+            RowEvent = new Event { Guid = System.Guid.NewGuid().ToString(), Id = "RowRead-" + theGuid, Description = "Row of a File", Subjects = new string[] {"a","b","c"}};
         }
         internal void UpdateProperties(FileImporterProperties theNewProperties)
         {
@@ -20,15 +22,18 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
             {
                 return;
             }
-
             if( theNewProperties.Guid != Guid)
             {
                 return;
             }
-
-            if(theNewProperties.Type != null && theNewProperties.Type != Type)
+            if (theNewProperties.Type != null && theNewProperties.Type != Type)
             {
                 Type = theNewProperties.Type;
+            }
+
+            if ( theNewProperties.RowEvent != null && Event.Merge(RowEvent, theNewProperties.RowEvent, true))
+            {
+                EventUpdated?.Invoke();
             }
         }
 

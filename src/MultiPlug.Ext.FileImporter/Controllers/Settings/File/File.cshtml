@@ -26,8 +26,37 @@
                         </div>
                     </div>
                 </div>
+                <h4>Headings</h4>
+                <div class="row-fluid">
+                    <div class="well">
+                        <div class="row-fluid">
+                            <table id="HeadingsTable" class="table table-striped">
+                                <tbody>
+                                    @for (int i = 0; i < Model.Extension.Model.Headings.Length; i++)
+                                    {
+                                        <tr>
+                                            <td class="span11">
+                                                <input type="text" name="Headings" class="span3" placeholder="Heading Name" value="@Raw(Model.Extension.Model.Headings[i])">
+                                            </td>
+                                            <td class="span1">
+                                                <a class="btn btn-red btn-deleteHeading" href="@Raw(Model.Context.Paths.Home)file/delete/?id=@Model.Extension.Model.Headings[i]">
+                                                    <i class="icon-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td class="span11"></td>
+                                        <td class="span1"><button type="button" class="btn btn-green" id="btn-newHeading"><i class="icon-plus"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <script type="text/javascript" src="@Raw(Model.Context.Paths.Assets)js/file.js"></script>
 </form>
 
