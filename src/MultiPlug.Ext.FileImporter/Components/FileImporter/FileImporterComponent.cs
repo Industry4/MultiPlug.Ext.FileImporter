@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using MultiPlug.Ext.FileImporter.Models.Components.FileImporter;
 using MultiPlug.Base.Exchange;
-using System.Diagnostics.Tracing;
 
 namespace MultiPlug.Ext.FileImporter.Components.FileImporter
 {
@@ -14,7 +13,7 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
             Guid = theGuid;
             Type = "Unknown";
 
-            RowEvent = new Event { Guid = System.Guid.NewGuid().ToString(), Id = "RowRead-" + theGuid, Description = "Row of a File", Subjects = new string[] {"a","b","c"}};
+            RowEvent = new Event { Guid = System.Guid.NewGuid().ToString(), Id = "RowRead-" + theGuid, Description = "Row of a File", Subjects = new string[0]};
         }
         internal void UpdateProperties(FileImporterProperties theNewProperties)
         {

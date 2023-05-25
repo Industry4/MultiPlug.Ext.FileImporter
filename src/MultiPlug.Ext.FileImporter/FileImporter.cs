@@ -10,7 +10,6 @@ namespace MultiPlug.Ext.FileImporter
 {
     public class FileImporter : MultiPlugExtension
     {
-        internal event Action EventUpdated;
         public FileImporter()
         {
             Core.Instance.EventsUpdated += OnEventsUpdated;
