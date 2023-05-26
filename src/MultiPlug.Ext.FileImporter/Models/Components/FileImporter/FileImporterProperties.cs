@@ -14,5 +14,7 @@ namespace MultiPlug.Ext.FileImporter.Models.Components.FileImporter
         [DataMember]
         public Event RowEvent { get; set; }
 
+        [DataMember]
+        public int? Skip { get; set; }
     }
 }

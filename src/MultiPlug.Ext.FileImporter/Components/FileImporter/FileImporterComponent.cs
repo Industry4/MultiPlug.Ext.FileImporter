@@ -13,7 +13,7 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
         {
             Guid = theGuid;
             Type = "Unknown";
-
+            Skip = 0;
             RowEvent = new Event { Guid = System.Guid.NewGuid().ToString(), Id = "RowRead-" + theGuid, Description = "Row of a File", Subjects = new string[0] };
         }
         internal void UpdateProperties(FileImporterProperties theNewProperties)
@@ -30,10 +30,13 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
             {
                 Type = theNewProperties.Type;
             }
-
             if (theNewProperties.RowEvent != null && Event.Merge(RowEvent, theNewProperties.RowEvent, true))
             {
                 EventUpdated?.Invoke();
+            }
+            if (theNewProperties.Skip != null && theNewProperties.Skip != Skip)
+            {
+                Skip = theNewProperties.Skip;
             }
         }
 
@@ -54,12 +57,20 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
                 return;
             }
 
+            int skipNumber = Skip.Value;
+
             foreach (string FileLine in System.IO.File.ReadLines(thePath))
-            {
+            {                
+                if (skipNumber != 0)
+                {
+                    skipNumber--;
+                    continue;
+                }
+
                 string[] Columns = FileLine.Split(Delimiter);
 
                 List<PayloadSubject> PayloadSubjects = new List<PayloadSubject>();
-
+                
                 for (int i = 0; i < Columns.Length; i++)
                 {
                     PayloadSubjects.Add(new PayloadSubject("Col" + (i + 1).ToString(), Columns[i]));
@@ -90,13 +101,13 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
             if (Headings != null)
             {
                 string[] Columns = Headings.Split(Delimiter);
-
+               
                 if (Columns.Length > 0)
                 {
                     RowEvent.Subjects = Columns;
                     EventUpdated.Invoke();
                 }
-            }        
+            }
         }
     }
 }

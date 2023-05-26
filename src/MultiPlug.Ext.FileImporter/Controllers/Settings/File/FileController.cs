@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net.Http.Headers;
 using MultiPlug.Base.Attribute;
 using MultiPlug.Base.Exchange;
 using MultiPlug.Base.Http;
@@ -27,7 +28,8 @@ namespace MultiPlug.Ext.FileImporter.Controllers.Settings.File
                     {
                         Guid = Search.Guid,
                         Description = Search.Type,
-                        Headings = Search.RowEvent.Subjects
+                        Headings = Search.RowEvent.Subjects,
+                        Skip = Search.Skip.Value
                     },
                     Template = Templates.SettingsFile
                 };
@@ -44,6 +46,7 @@ namespace MultiPlug.Ext.FileImporter.Controllers.Settings.File
                 {
                     Type = thePost.Description,
                     Guid = thePost.Guid,
+                    Skip = thePost.Skip,
                     RowEvent = new Event(Search.RowEvent.Guid, Search.RowEvent.Id, Search.RowEvent.Description, thePost.Headings)
                 });
             }
