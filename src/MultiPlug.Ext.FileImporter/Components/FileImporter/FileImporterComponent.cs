@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MultiPlug.Ext.FileImporter.Models.Components.FileImporter;
 using MultiPlug.Base.Exchange;
+using System.Linq;
 
 namespace MultiPlug.Ext.FileImporter.Components.FileImporter
 {
@@ -13,15 +14,15 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
             Guid = theGuid;
             Type = "Unknown";
 
-            RowEvent = new Event { Guid = System.Guid.NewGuid().ToString(), Id = "RowRead-" + theGuid, Description = "Row of a File", Subjects = new string[0]};
+            RowEvent = new Event { Guid = System.Guid.NewGuid().ToString(), Id = "RowRead-" + theGuid, Description = "Row of a File", Subjects = new string[0] };
         }
         internal void UpdateProperties(FileImporterProperties theNewProperties)
         {
-            if(theNewProperties == null)
+            if (theNewProperties == null)
             {
                 return;
             }
-            if( theNewProperties.Guid != Guid)
+            if (theNewProperties.Guid != Guid)
             {
                 return;
             }
@@ -30,7 +31,7 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
                 Type = theNewProperties.Type;
             }
 
-            if ( theNewProperties.RowEvent != null && Event.Merge(RowEvent, theNewProperties.RowEvent, true))
+            if (theNewProperties.RowEvent != null && Event.Merge(RowEvent, theNewProperties.RowEvent, true))
             {
                 EventUpdated?.Invoke();
             }
@@ -63,9 +64,39 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
                 {
                     PayloadSubjects.Add(new PayloadSubject("Col" + (i + 1).ToString(), Columns[i]));
                 }
-
                 RowEvent.Invoke(new Payload(RowEvent.Id, PayloadSubjects.ToArray()));
             }
+        }
+
+        internal void ReadHeaders(string thePath)
+        {
+            char Delimiter;
+
+            if (thePath.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
+            {
+                Delimiter = '\t';
+            }
+            else if (thePath.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
+            {
+                Delimiter = ',';
+            }
+            else
+            {
+                return;
+            }
+
+            string Headings = System.IO.File.ReadLines(thePath).FirstOrDefault();
+
+            if (Headings != null)
+            {
+                string[] Columns = Headings.Split(Delimiter);
+
+                if (Columns.Length > 0)
+                {
+                    RowEvent.Subjects = Columns;
+                    EventUpdated.Invoke();
+                }
+            }        
         }
     }
 }
