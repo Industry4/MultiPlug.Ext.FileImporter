@@ -70,11 +70,24 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
                 string[] Columns = FileLine.Split(Delimiter);
 
                 List<PayloadSubject> PayloadSubjects = new List<PayloadSubject>();
-                
+
                 for (int i = 0; i < Columns.Length; i++)
                 {
-                    PayloadSubjects.Add(new PayloadSubject("Col" + (i + 1).ToString(), Columns[i]));
+                    if (i <= RowEvent.Subjects.Length)
+                    {
+                        PayloadSubjects.Add(new PayloadSubject(RowEvent.Subjects[i], Columns[i]));
+                    }
                 }
+                
+                if (RowEvent.Subjects.Length > Columns.Length)
+                {
+                    int Difference = RowEvent.Subjects.Length - Columns.Length;
+                    for (int i = 0; i < Difference; i++)
+                    {
+                        PayloadSubjects.Add(new PayloadSubject(RowEvent.Subjects[Columns.Length + i], string.Empty));
+                    }
+                }
+
                 RowEvent.Invoke(new Payload(RowEvent.Id, PayloadSubjects.ToArray()));
             }
         }
