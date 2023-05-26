@@ -58,7 +58,6 @@
     <Compile Include="Controllers\Settings\File\FileController.cs" />
     <Compile Include="Controllers\Settings\File\FileDeleteController.cs" />
     <Compile Include="Controllers\Settings\File\FileExampleController.cs" />
-    <Compile Include="Controllers\Settings\File\FileImporter.cs" />
     <Compile Include="Controllers\Settings\Home\HomeController.cs" />
     <Compile Include="Controllers\Settings\SettingsApp.cs" />
     <Compile Include="Controllers\Shared\Templates.cs" />
