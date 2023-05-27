@@ -18,6 +18,8 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
         }
         internal void UpdateProperties(FileImporterProperties theNewProperties)
         {
+            bool EventChanges = false;
+
             if (theNewProperties == null)
             {
                 return;
@@ -26,17 +28,24 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
             {
                 return;
             }
+            if (theNewProperties.RowEvent != null && Event.Merge(RowEvent, theNewProperties.RowEvent, true))
+            {
+                EventChanges = true;
+            }
             if (theNewProperties.Type != null && theNewProperties.Type != Type)
             {
                 Type = theNewProperties.Type;
-            }
-            if (theNewProperties.RowEvent != null && Event.Merge(RowEvent, theNewProperties.RowEvent, true))
-            {
-                EventUpdated?.Invoke();
+                RowEvent.Description = "Row of the file type " + Type;
+                EventChanges = true;
             }
             if (theNewProperties.Skip != null && theNewProperties.Skip != Skip)
             {
                 Skip = theNewProperties.Skip;
+            }
+
+            if(EventChanges)
+            {
+                EventUpdated?.Invoke();
             }
         }
 
