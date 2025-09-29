@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MultiPlug.Ext.FileImporter</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>File Import Extension for the MultiPlug .Net Edge Computing Platform</title>
     <authors>4IR.UK</authors>
     <owners>4IR.UK</owners>
@@ -12,7 +12,8 @@
     <description>Allow the importation of Files such as CSV and TSV which are converted to MultiPlug Events</description>
     <repository type="git" url="https://github.com/industry4/MultiPlug.Ext.FileImporter" />
 	<license type="expression">MIT</license>
-    <releaseNotes>1.0.2 Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/8
+    <releaseNotes> 1.0.3 Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/9
+1.0.2 Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/8
 Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/6
 Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/5
 Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/4
@@ -21,7 +22,7 @@ Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/2
 Enhancement https://github.com/Industry4/MultiPlug.Ext.FileImporter/issues/1
 1.0.1 Basic Functionality
 1.0.0 First Release Stub</releaseNotes>
-    <copyright>4IR.UK British Systems 2023</copyright>
+    <copyright>4IR.UK British Systems 2025</copyright>
     <tags>MultiPlug Edge_Computing Edge IoT File Import</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.7.2">

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\FileImporter\Util\CsvTextFieldParser.cs" />
     <Compile Include="Components\FileImporter\FileImporterComponent.cs" />
     <Compile Include="Controllers\Apps\FileImporter\FileImporterApp.cs" />
     <Compile Include="Controllers\Apps\FileImporter\Home\HomeController.cs" />
