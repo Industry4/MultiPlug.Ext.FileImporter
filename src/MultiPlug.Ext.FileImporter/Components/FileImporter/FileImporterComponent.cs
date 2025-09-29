@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using MultiPlug.Ext.FileImporter.Components.FileImporter.Util;
 using MultiPlug.Ext.FileImporter.Models.Components.FileImporter;
 using MultiPlug.Base.Exchange;
-using System.Linq;
 
 namespace MultiPlug.Ext.FileImporter.Components.FileImporter
 {
@@ -51,80 +51,81 @@ namespace MultiPlug.Ext.FileImporter.Components.FileImporter
 
         internal void Import(string thePath)
         {
-            char Delimiter;
-
-            if (thePath.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
+            using (var CsvTextFieldParser = new CsvTextFieldParser(thePath))
             {
-                Delimiter = '\t';
-            }
-            else if (thePath.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
-            {
-                Delimiter = ',';
-            }
-            else
-            {
-                return;
-            }
-
-            int skipNumber = Skip.Value;
-
-            foreach (string FileLine in System.IO.File.ReadLines(thePath))
-            {                
-                if (skipNumber != 0)
+                if (thePath.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
                 {
-                    skipNumber--;
-                    continue;
+                    CsvTextFieldParser.SetDelimiter('\t');
+                }
+                else if (thePath.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
+                {
+                    CsvTextFieldParser.SetDelimiter(',');
+                }
+                else
+                {
+                    return;
                 }
 
-                string[] Columns = FileLine.Split(Delimiter);
+                int skipNumber = Skip.Value;
 
-                List<PayloadSubject> PayloadSubjects = new List<PayloadSubject>();
+                string[] Columns = CsvTextFieldParser.ReadFields();
 
-                for (int i = 0; i < Columns.Length; i++)
+                while(Columns != null)
                 {
-                    if (i <= RowEvent.Subjects.Length)
+                    if (skipNumber != 0)
                     {
-                        PayloadSubjects.Add(new PayloadSubject(RowEvent.Subjects[i], Columns[i]));
+                        skipNumber--;
+                        Columns = CsvTextFieldParser.ReadFields();
+                        continue;
                     }
-                }
-                
-                if (RowEvent.Subjects.Length > Columns.Length)
-                {
-                    int Difference = RowEvent.Subjects.Length - Columns.Length;
-                    for (int i = 0; i < Difference; i++)
+
+                    List<PayloadSubject> PayloadSubjects = new List<PayloadSubject>();
+
+                    for (int i = 0; i < Columns.Length; i++)
                     {
-                        PayloadSubjects.Add(new PayloadSubject(RowEvent.Subjects[Columns.Length + i], string.Empty));
+                        if (i <= RowEvent.Subjects.Length)
+                        {
+                            PayloadSubjects.Add(new PayloadSubject(RowEvent.Subjects[i], Columns[i]));
+                        }
                     }
+
+                    if (RowEvent.Subjects.Length > Columns.Length)
+                    {
+                        int Difference = RowEvent.Subjects.Length - Columns.Length;
+                        for (int i = 0; i < Difference; i++)
+                        {
+                            PayloadSubjects.Add(new PayloadSubject(RowEvent.Subjects[Columns.Length + i], string.Empty));
+                        }
+                    }
+
+                    RowEvent.Invoke(new Payload(RowEvent.Id, PayloadSubjects.ToArray()));
+
+                    Columns = CsvTextFieldParser.ReadFields();
                 }
 
-                RowEvent.Invoke(new Payload(RowEvent.Id, PayloadSubjects.ToArray()));
             }
         }
 
         internal void ReadHeaders(string thePath)
         {
-            char Delimiter;
+            using (var CsvTextFieldParser = new CsvTextFieldParser(thePath))
+            {
+                if (thePath.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
+                {
+                    CsvTextFieldParser.SetDelimiter('\t');
+                }
+                else if (thePath.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
+                {
+                    CsvTextFieldParser.SetDelimiter(',');
+                }
+                else
+                {
+                    return;
+                }
 
-            if (thePath.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
-            {
-                Delimiter = '\t';
-            }
-            else if (thePath.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
-            {
-                Delimiter = ',';
-            }
-            else
-            {
-                return;
-            }
+                string[] Columns = CsvTextFieldParser.ReadFields();
 
-            string Headings = System.IO.File.ReadLines(thePath).FirstOrDefault();
-
-            if (Headings != null)
-            {
-                string[] Columns = Headings.Split(Delimiter);
-               
-                if (Columns.Length > 0)
+                if (Columns != null)
                 {
                     RowEvent.Subjects = Columns;
                     EventUpdated.Invoke();
